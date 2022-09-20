@@ -5,24 +5,25 @@ using UnityEngine;
 public class MusicController : MonoBehaviour
 {
 
-    public int audioState = 0;
-    private int lastAudioState = 0;
+    public int audioState;
+    private int lastAudioState;
 
     public List<AudioClip> audioClips;
     private AudioSource audioSource;
 
 
     IEnumerator PlayIntroMusic() {
-        // play the intro music once through, then set the music to start looping and continue
-        audioSource.PlayOneShot(audioClips[0]);
+        //play the intro music once through, then continue with looping music starting from the "normal" music
+        audioSource.PlayOneShot(audioClips[1]);
         yield return new WaitWhile(() => audioSource.isPlaying);
-        audioState = 1;
-        audioSource.loop = true;
+        audioState = 0;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        audioState = 1;
+        lastAudioState = 1;
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(PlayIntroMusic());
     }
@@ -30,10 +31,13 @@ public class MusicController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (audioState != lastAudioState) { // music state has changed: stop the old music and start playing the new one
+
+        if (audioState != lastAudioState) { // audioState can be changed from elsewhere depending on the circumstances
             audioSource.Stop();
-            audioSource.PlayOneShot(audioClips[audioState]);
+            audioSource.clip = audioClips[audioState];
+            audioSource.Play();
             lastAudioState = audioState;
         }
+
     }
 }
