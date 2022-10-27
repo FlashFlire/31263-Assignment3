@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &11216103
@@ -434,7 +434,6 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 00d1e240d529b0a40a558e9a1b1a3d83, type: 3}
   - {fileID: 8300000, guid: b5112edae07d6b4459f21cced94810b9, type: 3}
-  movementDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &103902424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,9 +1886,10 @@ GameObject:
   - component: {fileID: 1066319066}
   - component: {fileID: 1066319068}
   - component: {fileID: 1066319067}
+  - component: {fileID: 1066319069}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8716,6 +8716,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1066319069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066319065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476fc7311ce820f488399f263ed1064a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallSprites:
+  - {fileID: 21300000, guid: de88a4b644d6ce748aae614527768be8, type: 3}
+  - {fileID: 21300000, guid: c1d40b5523b479548950ba7e50f2e852, type: 3}
+  - {fileID: 21300000, guid: b8783b4744f814e448c7851c28594063, type: 3}
+  - {fileID: 21300000, guid: 8568e32852bed0642959f93fbb483b72, type: 3}
+  - {fileID: 21300000, guid: 8db8f5d9beab6514db8b4744ba04712a, type: 3}
+  pelletSprites:
+  - {fileID: 21300000, guid: 83b4571beb35f3e4cb55bf20963b0ca8, type: 3}
+  - {fileID: 476850676, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
 --- !u!1 &1111352034
 GameObject:
   m_ObjectHideFlags: 0

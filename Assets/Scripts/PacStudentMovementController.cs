@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PacStudentMovementController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PacStudentMovementController : MonoBehaviour
     private Tweener tweener;
     private AudioSource audioSource;
     private Animator animator;
+
+    private Tilemap map;
 
 
     IEnumerator WalkInCircle() {
@@ -53,6 +56,26 @@ public class PacStudentMovementController : MonoBehaviour
 
     private void checkCollisions() {
 
+        Vector3Int nextPos = Vector3Int.FloorToInt(transform.position + currentInput);
+        // this method is only ever run at the start of a tween, so there shouldn't ever be any issues with the rounding of this
+
+        // if tile is a wall tile, do not let pac-student move there
+        // if tile is a pellet tile, remove it
+        // otherwise, do nothing
+
+        if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 1) {
+            lastInput = Vector3.zero;
+            currentInput = Vector3.zero;
+        } else if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 2) {
+            LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
+            map.SetTile(nextPos, null);
+            audioSource.clip = audioClips[1];
+        } else {
+            audioSource.clip = audioClips[0];
+        }
+
+
+
     }
 
     private void move() {
@@ -69,9 +92,7 @@ public class PacStudentMovementController : MonoBehaviour
                 else if (currentInput == Vector3.left) animator.SetInteger("Direction", 2);
                 else animator.SetInteger("Direction", 3);
 
-                // Play the appropriate sound clip
-                
-                audioSource.PlayOneShot(audioClips[1]); // placeholder from assignment 3
+                audioSource.Play();
 
             }
     }
@@ -86,6 +107,8 @@ public class PacStudentMovementController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         animator.speed = 0;
+
+        map = GameObject.FindWithTag("Level").GetComponent<Tilemap>();
 
         //StartCoroutine(WalkInCircle());
     }
