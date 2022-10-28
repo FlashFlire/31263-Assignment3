@@ -31,21 +31,22 @@ public class LevelLayout : MonoBehaviour
         for (int x = -14; x < 14; x++) {
             for (int y = -14; y < 15; y++) {
                 tile = map.GetTile<Tile>(new Vector3Int(x, y));
-                if (tile == null) { // empty tile
-                    level[x + 14, y + 14] = 0;
+                if (tile == null) {
+                    if (map.GetTile<AnimatedTile>(new Vector3Int(x, y)) != null) { // power pellet
+                        level[x + 14, y + 14] = 3;
+                        totalPellets++;
+                    } else { // nothing
+                        level[x + 14, y + 14] = 0;
+                    }
                 } else if (wallSprites.Contains(tile.sprite)) { // wall tile
                     level[x + 14, y + 14] = 1;
                 } else if (pelletSprites.Contains(tile.sprite)) { // pellet
                     level[x + 14, y + 14] = 2;
-                    //totalPellets++;
-                } else { // power pellet
-                    level[x + 14, y + 14] = 3;
                     totalPellets++;
                 }
             }
         }
 
-        Debug.Log(totalPellets);
 
     }
 

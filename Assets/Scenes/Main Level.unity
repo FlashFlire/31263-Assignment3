@@ -1757,7 +1757,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8565,7 +8565,7 @@ Tilemap:
       - {fileID: 522642775, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
       - {fileID: 1473352, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
       - {fileID: 522642775, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:

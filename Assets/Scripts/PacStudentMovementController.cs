@@ -82,7 +82,7 @@ public class PacStudentMovementController : MonoBehaviour
             GameManager.score += 10;
         } else if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 3) {
             LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
-            map.SetTile(nextPos, null); // does not seem to be working on the power pellets
+            map.SetTile(nextPos, null);
             audioSource.clip = audioClips[1];
             GameManager.score += 10;
             // collected a power pellet, call some function on the ghosts
