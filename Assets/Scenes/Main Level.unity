@@ -8565,7 +8565,7 @@ Tilemap:
       - {fileID: 522642775, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
       - {fileID: 1473352, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
       - {fileID: 522642775, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -8736,7 +8736,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8db8f5d9beab6514db8b4744ba04712a, type: 3}
   pelletSprites:
   - {fileID: 21300000, guid: 83b4571beb35f3e4cb55bf20963b0ca8, type: 3}
-  - {fileID: 476850676, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
 --- !u!1 &1111352034
 GameObject:
   m_ObjectHideFlags: 0

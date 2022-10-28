@@ -17,7 +17,7 @@ public class PacStudentMovementController : MonoBehaviour
     private Tilemap map;
 
 
-    IEnumerator WalkInCircle() {
+    IEnumerator WalkInCircle() { // old
         while (true) {
             for (int i = 0; i < 5; i++) {
                 currentInput = Vector3.right;
@@ -54,6 +54,15 @@ public class PacStudentMovementController : MonoBehaviour
         }
     }
 
+
+    private void faceDirection() {
+        if (currentInput == Vector3.right) transform.eulerAngles = Vector3.zero;
+        else if (currentInput == Vector3.up) transform.eulerAngles = new Vector3(0f, 0f, 90f);
+        else if (currentInput == Vector3.left) transform.eulerAngles = new Vector3(0f, 0f, 180f);
+        else if (currentInput == Vector3.down) transform.eulerAngles = new Vector3(0f, 0f, 270f);
+    }
+
+
     private void checkCollisions() {
 
         Vector3Int nextPos = Vector3Int.FloorToInt(transform.position + currentInput);
@@ -70,6 +79,13 @@ public class PacStudentMovementController : MonoBehaviour
             LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
             map.SetTile(nextPos, null);
             audioSource.clip = audioClips[1];
+            GameManager.score += 10;
+        } else if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 3) {
+            LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
+            map.SetTile(nextPos, null); // does not seem to be working on the power pellets
+            audioSource.clip = audioClips[1];
+            GameManager.score += 10;
+            // collected a power pellet, call some function on the ghosts
         } else {
             audioSource.clip = audioClips[0];
         }
@@ -87,10 +103,6 @@ public class PacStudentMovementController : MonoBehaviour
                 tweener.AddTween(transform, transform.position, transform.position + currentInput, 0.25f);
                 // 0.25s to move 1 tile to line up with animation (one tile per 'waka')
 
-                if (currentInput == Vector3.right) animator.SetInteger("Direction", 0);
-                else if (currentInput == Vector3.up) animator.SetInteger("Direction", 1);
-                else if (currentInput == Vector3.left) animator.SetInteger("Direction", 2);
-                else animator.SetInteger("Direction", 3);
 
                 audioSource.Play();
 
@@ -121,9 +133,18 @@ public class PacStudentMovementController : MonoBehaviour
 
         if (!tweener.TweenExists(transform)) {
 
+            // if we exited through the left / right tunnel, teleport to the other side
+            if (transform.position.x < -13) {
+                transform.position = new Vector3(12, transform.position.y);
+            } else if (transform.position.x > 12) {
+                transform.position = new Vector3(-13, transform.position.y);
+            }
+
             // store the direction we're currently moving so it doesn't change during the tween
             currentInput = new Vector3(lastInput.x, lastInput.y);
 
+
+            faceDirection();
             checkCollisions();
             move();
         }

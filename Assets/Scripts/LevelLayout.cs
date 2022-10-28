@@ -8,6 +8,8 @@ public class LevelLayout : MonoBehaviour
 
     public static int[,] level = new int[28, 29];
 
+    public static int totalPellets = 0;
+
     private Tilemap map;
 
     [SerializeField]
@@ -29,17 +31,21 @@ public class LevelLayout : MonoBehaviour
         for (int x = -14; x < 14; x++) {
             for (int y = -14; y < 15; y++) {
                 tile = map.GetTile<Tile>(new Vector3Int(x, y));
-                if (tile == null) {
+                if (tile == null) { // empty tile
                     level[x + 14, y + 14] = 0;
-                } else if (wallSprites.Contains(tile.sprite)) {
+                } else if (wallSprites.Contains(tile.sprite)) { // wall tile
                     level[x + 14, y + 14] = 1;
-                } else if (pelletSprites.Contains(tile.sprite)) {
+                } else if (pelletSprites.Contains(tile.sprite)) { // pellet
                     level[x + 14, y + 14] = 2;
-                } else {
-                    level[x + 14, y + 14] = 0;
+                    //totalPellets++;
+                } else { // power pellet
+                    level[x + 14, y + 14] = 3;
+                    totalPellets++;
                 }
             }
         }
+
+        Debug.Log(totalPellets);
 
     }
 
