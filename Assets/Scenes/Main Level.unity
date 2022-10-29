@@ -215,11 +215,10 @@ GameObject:
   - component: {fileID: 60541437}
   - component: {fileID: 60541439}
   - component: {fileID: 60541442}
-  - component: {fileID: 60541441}
   - component: {fileID: 60541440}
   m_Layer: 0
   m_Name: PacStudent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60541436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: 9, z: 0}
+  m_LocalPosition: {x: -9, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,18 +406,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &60541441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60541436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06cd67a9ffd111d4198aa63182a1f49f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &60541442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +421,7 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: 00d1e240d529b0a40a558e9a1b1a3d83, type: 3}
   - {fileID: 8300000, guid: b5112edae07d6b4459f21cced94810b9, type: 3}
+  tweener: {fileID: 1051773973}
 --- !u!1 &103902424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,8 +1726,9 @@ GameObject:
   - component: {fileID: 1051773971}
   - component: {fileID: 1051773970}
   - component: {fileID: 1051773972}
+  - component: {fileID: 1051773973}
   m_Layer: 0
-  m_Name: Music Controller
+  m_Name: Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1875,6 +1864,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a3b400d0235bf94f92a9573b7cb1d0b, type: 3}
   - {fileID: 8300000, guid: 0fbe03b3e09c5c847a8a8088b7f63ffc, type: 3}
   - {fileID: 8300000, guid: 656b7aa61e11e2f4ab4cb8fc780a31a6, type: 3}
+--- !u!114 &1051773973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051773969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cd67a9ffd111d4198aa63182a1f49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066319065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8849,6 +8850,7 @@ GameObject:
   - component: {fileID: 1194905827}
   - component: {fileID: 1194905826}
   - component: {fileID: 1194905828}
+  - component: {fileID: 1194905829}
   m_Layer: 0
   m_Name: Red Ghost
   m_TagString: Untagged
@@ -8916,7 +8918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194905825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8944,6 +8946,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1194905829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194905825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1358c0841257b6d499b897a49107ffe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostNo: 1
+  tweener: {fileID: 1051773973}
 --- !u!1 &1367485842
 GameObject:
   m_ObjectHideFlags: 0

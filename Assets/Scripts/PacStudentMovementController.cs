@@ -10,7 +10,7 @@ public class PacStudentMovementController : MonoBehaviour
     private Vector3 lastInput;
     private Vector3 currentInput;
 
-    private Tweener tweener;
+    public Tweener tweener;
     private AudioSource audioSource;
     private Animator animator;
 
@@ -114,7 +114,6 @@ public class PacStudentMovementController : MonoBehaviour
     void Start()
     {
         currentInput = Vector3.zero;
-        tweener = GetComponent<Tweener>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
