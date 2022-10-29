@@ -33,6 +33,8 @@ public class GhostController : MonoBehaviour
     void ghost1Behaviour() {
         // Ghost 1: Move in a random valid direction AWAY from PacStudent
 
+        if (transform.position == pacStudentTransform.position) return; // failsafe
+
         List<Vector3> possibleDirections = new List<Vector3>() {
             transform.position + Vector3.right,
             transform.position + Vector3.up,
@@ -58,16 +60,52 @@ public class GhostController : MonoBehaviour
 
     void ghost2Behaviour() {
         // Ghost 2: Move in a random valid direction TOWARDS PacStudent
+
+        if (transform.position == pacStudentTransform.position) return; // failsafe
+
+        List<Vector3> possibleDirections = new List<Vector3>() {
+            transform.position + Vector3.right,
+            transform.position + Vector3.up,
+            transform.position + Vector3.left,
+            transform.position + Vector3.down
+        };
+
+        Vector3 differenceFromPac = pacStudentTransform.position - transform.position;
+
+        for (int i = 0; i < possibleDirections.Count; i++) {
+            Vector3 nextDifferenceFromPac = pacStudentTransform.position - possibleDirections[i];
+            if (nextDifferenceFromPac.sqrMagnitude > differenceFromPac.sqrMagnitude) { // next direction is closer to pacman
+                possibleDirections.RemoveAt(i);
+                i--;
+            }
+
+        }
+
+        int choice = Random.Range(0, possibleDirections.Count);
+        targetTile = new Vector3(possibleDirections[choice].x, possibleDirections[choice].y);
     }
 
     void ghost3Behaviour() {
-        // Ghost 3: Move in a random valid direction with no restrictions
+        // Ghost 3: Move in a random direction with no restrictions
+
+        int choice = Random.Range(0, 4);
+        targetTile = transform.position + directions[choice];
     }
 
     void ghost4Behaviour() {
         // Ghost 4: Move clockwise along the edge of the map
-        // when first spawning (e.g. after defeated), move towards top-right corner
-        // otherwise, prioritise turning left, then moving forwards, then turning right
+
+        if (targetTile == Vector3.zero) {
+            targetTile = new Vector3(12, 13);
+        }
+
+        if (transform.position == targetTile) {
+            if (targetTile.x == 12 && targetTile.y == 13) targetTile = new Vector3(12, -13);
+            else if (targetTile.x == 12 && targetTile.y == -13) targetTile = new Vector3(-13, -13);
+            else if (targetTile.x == -13 && targetTile.y == -13) targetTile = new Vector3(-13, 13);
+            else targetTile = new Vector3(12, 13);
+        }
+
     }
 
 
@@ -76,7 +114,7 @@ public class GhostController : MonoBehaviour
     }
 
     void setTargetTile() {
-
+        movementBehaviours[ghostNo - 1]();
     }
 
     void move() {
@@ -123,6 +161,7 @@ public class GhostController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        targetTile = Vector3.zero;
 
         pacStudentTransform = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>();

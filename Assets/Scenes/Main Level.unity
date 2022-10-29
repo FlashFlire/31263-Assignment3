@@ -283,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60541436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 9, z: 0}
+  m_LocalPosition: {x: -13, y: 13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1434,6 +1434,7 @@ GameObject:
   - component: {fileID: 781821856}
   - component: {fileID: 781821855}
   - component: {fileID: 781821857}
+  - component: {fileID: 781821858}
   m_Layer: 0
   m_Name: Pink Ghost
   m_TagString: Untagged
@@ -1501,7 +1502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781821854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1529,6 +1530,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &781821858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781821854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1358c0841257b6d499b897a49107ffe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostNo: 2
+  tweener: {fileID: 1051773973}
 --- !u!1 &973910038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1555,7 @@ GameObject:
   - component: {fileID: 973910040}
   - component: {fileID: 973910039}
   - component: {fileID: 973910041}
+  - component: {fileID: 973910042}
   m_Layer: 0
   m_Name: Blue Ghost
   m_TagString: Untagged
@@ -1607,7 +1623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973910038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1635,6 +1651,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &973910042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973910038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1358c0841257b6d499b897a49107ffe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostNo: 3
+  tweener: {fileID: 1051773973}
 --- !u!1 &992827478
 GameObject:
   m_ObjectHideFlags: 0
@@ -8918,7 +8948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194905825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9336,6 +9366,7 @@ GameObject:
   - component: {fileID: 1557337742}
   - component: {fileID: 1557337741}
   - component: {fileID: 1557337743}
+  - component: {fileID: 1557337744}
   m_Layer: 0
   m_Name: Orange Ghost
   m_TagString: Untagged
@@ -9403,7 +9434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557337740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9431,6 +9462,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1557337744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557337740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1358c0841257b6d499b897a49107ffe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostNo: 4
+  tweener: {fileID: 1051773973}
 --- !u!1 &1793973166
 GameObject:
   m_ObjectHideFlags: 0
