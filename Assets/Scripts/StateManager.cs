@@ -46,11 +46,10 @@ public class StateManager : MonoBehaviour
         if (GameManager.gamePlaying) {
 
             if (GameManager.ghostScareTime > 0) {
-                musicController.audioState = 2;
                 GameManager.ghostScareTime -= Time.deltaTime;
-            } else {
-                musicController.audioState = 0;
             }
+
+            musicController.audioState = (GameManager.ghostsDefeated > 0) ? 3 : ((GameManager.ghostScareTime > 0) ? 2 : 0);
 
         }
     }

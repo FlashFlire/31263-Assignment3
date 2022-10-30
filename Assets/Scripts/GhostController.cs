@@ -19,6 +19,14 @@ public class GhostController : MonoBehaviour
     private Animator animator;
 
 
+    private List<Vector3> startingPositions = new List<Vector3>() {
+        new Vector3(-5, 3),
+        new Vector3(4, 3),
+        new Vector3(-5, -3),
+        new Vector3(4, -3)
+    };
+
+
     private List<Vector3> directions = new List<Vector3>() {
         Vector3.right,
         Vector3.up,
@@ -27,6 +35,31 @@ public class GhostController : MonoBehaviour
     }; // for selecting a tile to move to
 
     private int direction = 0;
+
+
+    IEnumerator DefeatedBehaviour() {
+
+        GameManager.score += 300;
+
+        isDefeated = true;
+        animator.SetTrigger("GhostEaten");
+        GameManager.ghostsDefeated++;
+
+        yield return new WaitWhile(() => tweener.TweenExists(transform));
+
+        tweener.AddTween(transform, transform.position, Vector3.zero, 5f); // move back to ghost house
+        yield return new WaitWhile(() => tweener.TweenExists(transform));
+
+        direction = 1;
+        animator.SetInteger("Direction", 1);
+        animator.SetTrigger("GhostRespawned");
+        GameManager.ghostsDefeated--;
+        tweener.AddTween(transform, Vector3.zero, new Vector3(0, 2), 0.6f); // move out of ghost house
+        yield return new WaitWhile(() => tweener.TweenExists(transform));
+
+        isDefeated = false;
+
+    }
 
 
 
@@ -111,10 +144,21 @@ public class GhostController : MonoBehaviour
 
     void checkCollision() {
         // check if colliding with PacStudent, handle according to ghost state
+        if (Mathf.Abs(pacStudentTransform.position.x - transform.position.x) < 1f && Mathf.Abs(pacStudentTransform.position.y - transform.position.y) < 1f) {
+            if (GameManager.ghostScareTime > 0) {
+                StartCoroutine(DefeatedBehaviour());
+            } else {
+                // kill pacstudent...
+            }
+        }
     }
 
     void setTargetTile() {
-        movementBehaviours[ghostNo - 1]();
+        if (GameManager.ghostScareTime > 0) {
+            movementBehaviours[0]();
+        } else {
+            movementBehaviours[ghostNo - 1]();
+        }
     }
 
     void move() {
@@ -153,7 +197,7 @@ public class GhostController : MonoBehaviour
 
         animator.SetInteger("Direction", direction);
 
-        tweener.AddTween(transform, transform.position, nextTile, 0.25f);
+        tweener.AddTween(transform, transform.position, nextTile, 0.3f);
 
     }
 
@@ -177,11 +221,7 @@ public class GhostController : MonoBehaviour
     void Update()
     {
 
-        //if (GameManager.gamePlaying) {
-
-            if (isDefeated) {
-                // defeated behaviour
-            } else {
+            if (!isDefeated) {
                 checkCollision();
                 if (!tweener.TweenExists(transform)) {
                     setTargetTile();
@@ -189,7 +229,7 @@ public class GhostController : MonoBehaviour
                 }
             }
 
-        //}
+        animator.SetFloat("TimeScared", GameManager.ghostScareTime);
         
     }
 }
