@@ -43,6 +43,15 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.gamePlaying) {
+
+            if (GameManager.ghostScareTime > 0) {
+                musicController.audioState = 2;
+                GameManager.ghostScareTime -= Time.deltaTime;
+            } else {
+                musicController.audioState = 0;
+            }
+
+        }
     }
 }

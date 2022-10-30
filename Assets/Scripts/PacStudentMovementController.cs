@@ -85,7 +85,7 @@ public class PacStudentMovementController : MonoBehaviour
             map.SetTile(nextPos, null);
             audioSource.clip = audioClips[1];
             GameManager.score += 10;
-            // collected a power pellet, call some function on the ghosts
+            GameManager.ghostScareTime = 10;
         } else {
             audioSource.clip = audioClips[0];
         }
