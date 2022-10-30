@@ -11,7 +11,7 @@ public class MusicController : MonoBehaviour
     public List<AudioClip> audioClips;
 
     [SerializeField]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
 
     public IEnumerator PlayIntroMusic() {

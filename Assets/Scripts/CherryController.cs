@@ -14,6 +14,9 @@ public class CherryController : MonoBehaviour
 
     public Tweener tweener;
 
+    private Transform pacStudentTransform;
+
+
     IEnumerator SpawnCherries() {
 
         while (true) {
@@ -47,6 +50,12 @@ public class CherryController : MonoBehaviour
     }
 
 
+    public void Reset() {
+        enabled = false;
+        transform.position = new Vector3(-200, 0);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +64,7 @@ public class CherryController : MonoBehaviour
 
         h_edge = Screen.width / 128f;
         v_edge = Screen.height / 128f;
+        pacStudentTransform = GameObject.FindWithTag("Player").transform;
 
         StartCoroutine(SpawnCherries());
         
@@ -63,6 +73,9 @@ public class CherryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (enabled && Mathf.Abs(pacStudentTransform.position.x - transform.position.x) < 1f && Mathf.Abs(pacStudentTransform.position.y - transform.position.y) < 1f) {
+            enabled = false;
+            GameManager.score += 100;
+        }
     }
 }

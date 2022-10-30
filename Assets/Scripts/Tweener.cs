@@ -24,6 +24,11 @@ public class Tweener : MonoBehaviour
         }
     }
 
+
+    public void Reset() {
+        activeTweens = new List<Tween>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

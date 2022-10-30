@@ -16,7 +16,9 @@ public class GhostController : MonoBehaviour
     private Vector3 nextTile;
 
     private Transform pacStudentTransform;
+    private StateManager stateManager;
     private Animator animator;
+    private AudioSource audioSource;
 
 
     private List<Vector3> startingPositions = new List<Vector3>() {
@@ -43,6 +45,7 @@ public class GhostController : MonoBehaviour
 
         isDefeated = true;
         animator.SetTrigger("GhostEaten");
+        audioSource.Play();
         GameManager.ghostsDefeated++;
 
         yield return new WaitWhile(() => tweener.TweenExists(transform));
@@ -59,6 +62,13 @@ public class GhostController : MonoBehaviour
 
         isDefeated = false;
 
+    }
+
+
+    
+    public void Reset() {
+        transform.position = startingPositions[ghostNo - 1];
+        direction = 0;
     }
 
 
@@ -148,7 +158,7 @@ public class GhostController : MonoBehaviour
             if (GameManager.ghostScareTime > 0) {
                 StartCoroutine(DefeatedBehaviour());
             } else {
-                // kill pacstudent...
+                stateManager.PacStudentDefeated();
             }
         }
     }
@@ -208,7 +218,10 @@ public class GhostController : MonoBehaviour
         targetTile = Vector3.zero;
 
         pacStudentTransform = GameObject.FindWithTag("Player").transform;
+        stateManager = GameObject.FindWithTag("Managers").GetComponent<StateManager>();
+
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         movementBehaviours.Add(ghost1Behaviour);
         movementBehaviours.Add(ghost2Behaviour);
@@ -221,6 +234,8 @@ public class GhostController : MonoBehaviour
     void Update()
     {
 
+        if (GameManager.gamePlaying) {
+
             if (!isDefeated) {
                 checkCollision();
                 if (!tweener.TweenExists(transform)) {
@@ -229,7 +244,9 @@ public class GhostController : MonoBehaviour
                 }
             }
 
-        animator.SetFloat("TimeScared", GameManager.ghostScareTime);
+            animator.SetFloat("TimeScared", GameManager.ghostScareTime);
+
+        }
         
     }
 }

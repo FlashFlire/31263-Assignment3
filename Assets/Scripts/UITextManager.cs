@@ -9,6 +9,12 @@ public class UITextManager : MonoBehaviour
     private Text scoreText;
     private Text timeText;
     private Text scareTimeText;
+    private Text livesText;
+
+
+    public void UpdateLives() {
+        livesText.text = GameManager.lives.ToString();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +22,7 @@ public class UITextManager : MonoBehaviour
         scoreText = GameObject.FindWithTag("Score").GetComponent<Text>();
         timeText = GameObject.FindWithTag("Time").GetComponent<Text>();
         scareTimeText = GameObject.FindWithTag("ScareTime").GetComponent<Text>();
+        livesText = GameObject.FindWithTag("Lives").GetComponent<Text>();
     }
 
     // Update is called once per frame

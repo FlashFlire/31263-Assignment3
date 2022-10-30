@@ -39,6 +39,27 @@ public class PacStudentMovementController : MonoBehaviour
     }
 
 
+    public void Reset() {
+        enabled = true;
+        transform.position = new Vector3(-13, 13);
+        lastInput = Vector3.zero;
+        currentInput = Vector3.zero;
+    }
+
+
+    public void PlayDefeatAnimation() {
+        animator.speed = 1;
+        animator.SetTrigger("PacStudentDefeated");
+
+        Invoke("StopDefeatAnimation", 2.5f);
+    }
+
+    private void StopDefeatAnimation() {
+        animator.speed = 0;
+        enabled = false;
+    }
+
+
     private void readInputs() {
         if (Input.GetKeyDown("w")) {
             lastInput = Vector3.up;
@@ -75,6 +96,7 @@ public class PacStudentMovementController : MonoBehaviour
         if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 1) {
             lastInput = Vector3.zero;
             currentInput = Vector3.zero;
+            audioSource.PlayOneShot(audioClips[3]);
         } else if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 2) {
             LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
             map.SetTile(nextPos, null);
@@ -83,7 +105,7 @@ public class PacStudentMovementController : MonoBehaviour
         } else if (LevelLayout.level[nextPos.x + 14, nextPos.y + 14] == 3) {
             LevelLayout.level[nextPos.x + 14, nextPos.y + 14] = 0;
             map.SetTile(nextPos, null);
-            audioSource.clip = audioClips[1];
+            audioSource.clip = audioClips[2];
             GameManager.score += 10;
             GameManager.ghostScareTime = 10;
         } else {
@@ -129,25 +151,27 @@ public class PacStudentMovementController : MonoBehaviour
     {
 
         if (GameManager.gamePlaying) {
+
             readInputs();
-        }
 
-        if (!tweener.TweenExists(transform)) {
+            if (!tweener.TweenExists(transform)) {
 
-            // if we exited through the left / right tunnel, teleport to the other side
-            if (transform.position.x < -13) {
-                transform.position = new Vector3(12, transform.position.y);
-            } else if (transform.position.x > 12) {
-                transform.position = new Vector3(-13, transform.position.y);
+                // if we exited through the left / right tunnel, teleport to the other side
+                if (transform.position.x < -13) {
+                    transform.position = new Vector3(12, transform.position.y);
+                } else if (transform.position.x > 12) {
+                    transform.position = new Vector3(-13, transform.position.y);
+                }
+
+                // store the direction we're currently moving so it doesn't change during the tween
+                currentInput = new Vector3(lastInput.x, lastInput.y);
+
+
+                faceDirection();
+                checkCollisions();
+                move();
             }
 
-            // store the direction we're currently moving so it doesn't change during the tween
-            currentInput = new Vector3(lastInput.x, lastInput.y);
-
-
-            faceDirection();
-            checkCollisions();
-            move();
         }
         
     }

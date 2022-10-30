@@ -7,6 +7,8 @@ public class GameManager
 
     public static int score = 0;
 
+    public static int lives = 3;
+
     public static float ghostScareTime = 0f;
     // how long ghosts have left in their scared state, in seconds
 
