@@ -177,14 +177,18 @@ public class GhostController : MonoBehaviour
     void Update()
     {
 
-        if (isDefeated) {
-            // defeated behaviour
-        } else {
-            checkCollision();
-            if (!tweener.TweenExists(transform)) {
-                setTargetTile();
-                move();
+        if (GameManager.gamePlaying) {
+
+            if (isDefeated) {
+                // defeated behaviour
+            } else {
+                checkCollision();
+                if (!tweener.TweenExists(transform)) {
+                    setTargetTile();
+                    move();
+                }
             }
+
         }
         
     }

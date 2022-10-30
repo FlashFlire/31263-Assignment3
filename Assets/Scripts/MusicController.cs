@@ -5,15 +5,22 @@ using UnityEngine;
 public class MusicController : MonoBehaviour
 {
 
-    public int audioState;
-    private int lastAudioState;
+    public int audioState = 0;
+    private int lastAudioState = 0;
 
     public List<AudioClip> audioClips;
+
+    [SerializeField]
     private AudioSource audioSource;
 
 
-    IEnumerator PlayIntroMusic() {
+    public IEnumerator PlayIntroMusic() {
         //play the intro music once through, then continue with looping music starting from the "normal" music
+
+        audioState = 1;
+        lastAudioState = 1;
+        audioSource.Stop();
+
         audioSource.PlayOneShot(audioClips[1]);
         yield return new WaitWhile(() => audioSource.isPlaying);
         audioState = 0;
@@ -22,10 +29,8 @@ public class MusicController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioState = 1;
-        lastAudioState = 1;
-        audioSource = GetComponent<AudioSource>();
-        StartCoroutine(PlayIntroMusic());
+        //audioSource = GetComponent<AudioSource>();
+        //StartCoroutine(PlayIntroMusic());
     }
 
     // Update is called once per frame

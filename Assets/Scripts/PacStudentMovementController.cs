@@ -128,24 +128,28 @@ public class PacStudentMovementController : MonoBehaviour
     void Update()
     {
 
-        readInputs();
+        if (GameManager.gamePlaying) {
 
-        if (!tweener.TweenExists(transform)) {
+            readInputs();
 
-            // if we exited through the left / right tunnel, teleport to the other side
-            if (transform.position.x < -13) {
-                transform.position = new Vector3(12, transform.position.y);
-            } else if (transform.position.x > 12) {
-                transform.position = new Vector3(-13, transform.position.y);
+            if (!tweener.TweenExists(transform)) {
+
+                // if we exited through the left / right tunnel, teleport to the other side
+                if (transform.position.x < -13) {
+                    transform.position = new Vector3(12, transform.position.y);
+                } else if (transform.position.x > 12) {
+                    transform.position = new Vector3(-13, transform.position.y);
+                }
+
+                // store the direction we're currently moving so it doesn't change during the tween
+                currentInput = new Vector3(lastInput.x, lastInput.y);
+
+
+                faceDirection();
+                checkCollisions();
+                move();
             }
 
-            // store the direction we're currently moving so it doesn't change during the tween
-            currentInput = new Vector3(lastInput.x, lastInput.y);
-
-
-            faceDirection();
-            checkCollisions();
-            move();
         }
         
     }
