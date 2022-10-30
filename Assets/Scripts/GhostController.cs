@@ -33,8 +33,6 @@ public class GhostController : MonoBehaviour
     void ghost1Behaviour() {
         // Ghost 1: Move in a random valid direction AWAY from PacStudent
 
-        if (transform.position == pacStudentTransform.position) return; // failsafe
-
         List<Vector3> possibleDirections = new List<Vector3>() {
             transform.position + Vector3.right,
             transform.position + Vector3.up,
@@ -53,6 +51,8 @@ public class GhostController : MonoBehaviour
 
         }
 
+        if (possibleDirections.Count == 0) return; // failsafe
+
         int choice = Random.Range(0, possibleDirections.Count);
         targetTile = new Vector3(possibleDirections[choice].x, possibleDirections[choice].y);
 
@@ -60,8 +60,6 @@ public class GhostController : MonoBehaviour
 
     void ghost2Behaviour() {
         // Ghost 2: Move in a random valid direction TOWARDS PacStudent
-
-        if (transform.position == pacStudentTransform.position) return; // failsafe
 
         List<Vector3> possibleDirections = new List<Vector3>() {
             transform.position + Vector3.right,
@@ -80,6 +78,8 @@ public class GhostController : MonoBehaviour
             }
 
         }
+
+        if (possibleDirections.Count == 0) return; // failsafe
 
         int choice = Random.Range(0, possibleDirections.Count);
         targetTile = new Vector3(possibleDirections[choice].x, possibleDirections[choice].y);
