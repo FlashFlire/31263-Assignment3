@@ -25,21 +25,19 @@ public class CherryController : MonoBehaviour
             switch (direction) {
                 case 0: // left-right
                     start = new Vector3(-h_edge - 32f, Random.Range(-v_edge, v_edge));
-                    end = new Vector3(h_edge + 32f, Random.Range(-v_edge, v_edge));
                     break;
                 case 1: // top-bottom
                     start = new Vector3(Random.Range(-h_edge, h_edge), v_edge + 32f);
-                    end = new Vector3(Random.Range(-h_edge, h_edge), -v_edge - 32f);
                     break;
                 case 2: // right-left
                     start = new Vector3(h_edge + 32f, Random.Range(-v_edge, v_edge));
-                    end = new Vector3(-h_edge - 32f, Random.Range(-v_edge, v_edge));
                     break;
                 case 3: //bottom-top
                     start = new Vector3(Random.Range(-h_edge, h_edge), -v_edge - 32f);
-                    end = new Vector3(Random.Range(-h_edge, h_edge), v_edge + 32f);
                     break;
             }
+
+            end = new Vector3(-start.x, -start.y);
 
             enabled = true;
             tweener.AddTween(transform, start, end, 8f);
@@ -52,6 +50,8 @@ public class CherryController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        enabled = false;
 
         h_edge = Screen.width / 128f;
         v_edge = Screen.height / 128f;
