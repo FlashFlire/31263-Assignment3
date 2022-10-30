@@ -15,6 +15,7 @@ public class StateManager : MonoBehaviour
 
         GameManager.gamePlaying = false;
         readyImage.enabled = true;
+        Time.timeScale = 0;
 
         // display "ready?" screen here
 
@@ -24,6 +25,7 @@ public class StateManager : MonoBehaviour
 
         readyImage.enabled = false;
         GameManager.gamePlaying = true;
+        Time.timeScale = 1;
 
     }
 
@@ -33,6 +35,7 @@ public class StateManager : MonoBehaviour
         musicController = GetComponent<MusicController>();
         readyImage = GameObject.FindWithTag("ReadyImage").GetComponent<Image>();
         gameOverImage = GameObject.FindWithTag("GameOverImage").GetComponent<Image>();
+        gameOverImage.enabled = false;
 
         StartCoroutine(LevelIntro());
     }

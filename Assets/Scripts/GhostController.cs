@@ -177,7 +177,7 @@ public class GhostController : MonoBehaviour
     void Update()
     {
 
-        if (GameManager.gamePlaying) {
+        //if (GameManager.gamePlaying) {
 
             if (isDefeated) {
                 // defeated behaviour
@@ -189,7 +189,7 @@ public class GhostController : MonoBehaviour
                 }
             }
 
-        }
+        //}
         
     }
 }

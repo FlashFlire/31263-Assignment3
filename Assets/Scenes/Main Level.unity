@@ -302,7 +302,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 651d48ecd9ec5de4b8a08ad064b560bb, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1760,8 +1760,9 @@ GameObject:
   - component: {fileID: 1051773972}
   - component: {fileID: 1051773973}
   - component: {fileID: 1051773974}
+  - component: {fileID: 1051773975}
   m_Layer: 0
-  m_Name: Controllers
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1920,6 +1921,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebcc8a83198972a468e54a8320a6fddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1051773975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051773969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453437f79f0a33d43bf036fa0453265c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1066319065
@@ -8024,16 +8037,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -13, y: 13, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -12, y: 13, z: 0}
     second:
       serializedVersion: 2
@@ -8626,7 +8629,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: d00d0114f4aa56c478046e64550fab64, type: 2}
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: e5571a2aecfbad64c86788522af13b15, type: 2}
-  - m_RefCount: 218
+  - m_RefCount: 217
     m_Data: {fileID: 11400000, guid: 56f573e20fe67e04298ec3117e15dd7d, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 4b527c9fea4d1f0478fb8d27e2170a65, type: 2}
@@ -8641,12 +8644,12 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: b8783b4744f814e448c7851c28594063, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: 21300000, guid: 8568e32852bed0642959f93fbb483b72, type: 3}
-  - m_RefCount: 218
+  - m_RefCount: 217
     m_Data: {fileID: 21300000, guid: 83b4571beb35f3e4cb55bf20963b0ca8, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 522642775, guid: a7c876c916c52ce4787cb18de76b5de1, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 378
+  - m_RefCount: 377
     m_Data:
       e00: 1
       e01: 0
@@ -8737,7 +8740,7 @@ Tilemap:
       e32: 2.41e-43
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 656
+  - m_RefCount: 655
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -9579,10 +9582,9 @@ GameObject:
   - component: {fileID: 1793973167}
   - component: {fileID: 1793973169}
   - component: {fileID: 1793973168}
-  - component: {fileID: 1793973170}
   m_Layer: 5
   m_Name: Score Counter
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9649,18 +9651,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793973166}
   m_CullTransparentMesh: 1
---- !u!114 &1793973170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793973166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453437f79f0a33d43bf036fa0453265c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1808670222
 GameObject:
   m_ObjectHideFlags: 0
@@ -9750,7 +9740,7 @@ GameObject:
   - component: {fileID: 1932733133}
   m_Layer: 5
   m_Name: Time Counter
-  m_TagString: Untagged
+  m_TagString: Time
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
